@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using NUnit.Framework;
 
 namespace LiskovSubstitution.Tests
@@ -15,7 +11,6 @@ namespace LiskovSubstitution.Tests
 		    account.Debit(50);
 		    Assert.AreEqual(50, account.Balance );
 	    }
-
     	
 	    [Test]
 	    public void CreditingAccountAddsAmountToBalance() {
@@ -23,12 +18,15 @@ namespace LiskovSubstitution.Tests
 		    Assert.AreEqual(100, account.Balance);
 	    }
     	
+        [Test]
 	    [ExpectedException(typeof(DebitAmountExceedsLimitException))]
 	    public void CannotDebitMoreThanAvailableBalance() {
-		    new BankAccount().Debit(50);
+            BankAccount account = CreateAccountWithStartingBalance(0);
+            account.Debit(50);
 	    }
 
-	    private BankAccount CreateAccountWithStartingBalance(int balance) {
+        protected virtual BankAccount CreateAccountWithStartingBalance(int balance)
+        {
 		    BankAccount account = new BankAccount();
 		    account.Credit(balance);
 		    return account;

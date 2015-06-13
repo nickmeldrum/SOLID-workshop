@@ -6,15 +6,14 @@ namespace LiskovSubstitution
 {
     public class BankAccount
     {
-
-        private double balance = 0;
+        protected double balance = 0;
 
         public double Balance
         {
             get { return balance; }
         }
 
-        public void Debit(double amount)
+        public virtual void Debit(double amount)
         {
             if (amount > balance)
                 throw new DebitAmountExceedsLimitException();
