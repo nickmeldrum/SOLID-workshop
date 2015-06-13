@@ -7,18 +7,12 @@ namespace DependencyInversion
     public class ResponseWriter
     {
 
-        public string CreateResponse(Customer customer, ResponseKind responseKind)
+        public string CreateResponse(Customer customer, ISerialize serializer)
         {
-            if (responseKind == ResponseKind.HTML)
-            {
-                return new HtmlSerializer().SerializeToHtml(customer);
-            }
-            else if (responseKind == ResponseKind.XML)
-            {
-                return new XmlSerializer().SerializeToXml(customer);
+            if (serializer == null)
+                throw new ArgumentException("you must include a serializer", "serializer");
 
-            }
-            return new StringSerializer().SerializeToString(customer);
+            return serializer.Serialize(customer);
         }
 
     }

@@ -13,7 +13,7 @@ namespace DependencyInversion.Tests
 	    public void CustomerShouldBeWrittenInXml() {
 		    Customer customer = new Customer("xyz");
 		    string html = "<customer>xyz</customer>";
-		    Assert.AreEqual(html , new XmlSerializer().SerializeToXml(customer));
+		    Assert.AreEqual(html , new XmlSerializer().Serialize(customer));
 	    }
 
     }

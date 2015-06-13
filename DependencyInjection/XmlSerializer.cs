@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DependencyInversion
 {
-    public class XmlSerializer
+    public class XmlSerializer : ISerialize
     {
 
-        public string SerializeToXml(Customer customer)
+        public string Serialize(Customer customer)
         {
             return "<customer>" + customer.Name + "</customer>";
         }

@@ -4,10 +4,10 @@ using System.Text;
 
 namespace DependencyInversion
 {
-    public class StringSerializer
+    public class StringSerializer : ISerialize
     {
 
-        public string SerializeToString(Customer customer)
+        public string Serialize(Customer customer)
         {
             return "Customer: " + customer.Name;
         }

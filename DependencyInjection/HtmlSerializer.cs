@@ -4,10 +4,10 @@ using System.Text;
 
 namespace DependencyInversion
 {
-    public class HtmlSerializer
+    public class HtmlSerializer : ISerialize
     {
 
-        public string SerializeToHtml(Customer customer)
+        public string Serialize(Customer customer)
         {
             return "<html><head><title>Customer Details</title></head>" +
             "<body><table><tr><td>Customer</td><td>" + customer.Name +

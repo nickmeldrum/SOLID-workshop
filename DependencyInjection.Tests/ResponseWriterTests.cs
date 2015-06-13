@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using NUnit.Framework;
 
 namespace DependencyInversion.Tests
@@ -11,23 +7,23 @@ namespace DependencyInversion.Tests
 
         [Test]
         public void WhenHtmlSelectedHtmlResponseIsCreated()  {
-	        Assert.IsTrue(CreateResponseOfKind(ResponseKind.HTML).StartsWith("<html>"));
+	        Assert.IsTrue(CreateResponseOfKind(new HtmlSerializer()).StartsWith("<html>"));
         }
 
 
         [Test]
         public void WhenXmlSelectedXmlResponseIsCreated()  {
-	        Assert.IsTrue(CreateResponseOfKind(ResponseKind.XML ).StartsWith("<customer>"));
+	        Assert.IsTrue(CreateResponseOfKind(new XmlSerializer()).StartsWith("<customer>"));
         }
 
         [Test]
         public void WhenStringIsSelectedstringResponseIsCreated()  {
-	        Assert.IsTrue(CreateResponseOfKind(ResponseKind.STRING).StartsWith("Customer"));
+            Assert.IsTrue(CreateResponseOfKind(new StringSerializer()).StartsWith("Customer"));
         }
 
-        private string CreateResponseOfKind(ResponseKind responseKind) {
+        private string CreateResponseOfKind(ISerialize serializer) {
 	        Customer customer = new Customer("Kent Beck");
-	        string response = new ResponseWriter().CreateResponse(customer, responseKind );
+	        string response = new ResponseWriter().CreateResponse(customer, serializer);
 	        return response;
         }
     }
