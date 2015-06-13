@@ -86,6 +86,7 @@ Design Principles
  -----
 
  * SRP: why important? because if a class does 1 thing it is less likely to have to change therefore things that depend on it are depending on something more dependable
+ also: helps us with the composobility of the software as each class does 1 thing
 
 
 Class Design Principles

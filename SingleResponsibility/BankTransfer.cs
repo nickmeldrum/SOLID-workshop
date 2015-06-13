@@ -10,10 +10,13 @@ namespace SingleResponsibility
 	    private BankAccount payee;
 	    private double amount;
 
-	    public BankTransfer(BankAccount payer, BankAccount payee, double amount) {
+        private Reporter reporter;
+
+	    public BankTransfer(BankAccount payer, BankAccount payee, double amount, Reporter reporter) {
 		    this.payer = payer;
 		    this.payee = payee;
 		    this.amount = amount;
+	        this.reporter = reporter;
 	    }
 
 	    public void Execute() {
@@ -21,12 +24,9 @@ namespace SingleResponsibility
 		    payee.Deposit(amount);
 	    }
 
-	    public string ToXml() {
-		    return "<BankTransfer amount='" + amount.ToString() + "'>" +
-				    "<Payer>" + payer.AccountNumber + "</Payer>" +
-				    "<Payee>" + payee.AccountNumber + "</Payee>" +
-				    "</BankTransfer>";
-	    }
-
+        public string ToXml()
+        {
+            return reporter.ToXml(payer.AccountNumber, payee.AccountNumber, amount);
+        }
     }
 }

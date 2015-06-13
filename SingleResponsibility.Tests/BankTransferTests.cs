@@ -36,7 +36,7 @@ namespace SingleResponsibility.Tests
 		    payer = new BankAccount(1234);
 		    payee = new BankAccount(2345);
 		    payer.Deposit(100);
-		    transfer = new BankTransfer(payer, payee, 50);
+		    transfer = new BankTransfer(payer, payee, 50, new Reporter());
 		    transfer.Execute();
 	    }
 
