@@ -6,13 +6,14 @@ namespace LawOfDemeter
     	
 	    public const double SHIPPING_COST_OUTSIDE_EU = 10;
 	    private IList<InvoiceItem> invoiceItems = new List<InvoiceItem>();
-	    private Customer customer;
+        private Country country;
 
-	    public Invoice(Customer customer) {
-		    this.customer = customer;
-	    }
+        public Invoice(Country country)
+        {
+            this.country = country;
+        }
 
-	    public void AddItem(InvoiceItem invoiceItem) {
+         public void AddItem(InvoiceItem invoiceItem) {
 		    invoiceItems.Add(invoiceItem);
 	    }
 
@@ -26,7 +27,7 @@ namespace LawOfDemeter
 			        invoiceTotal += invoiceItem.Subtotal;
 		        }
         		
-		        if(!this.customer.IsInEurope()){
+		        if(!country.IsInEurope){
 			        invoiceTotal += SHIPPING_COST_OUTSIDE_EU;
 		        }
 		        return invoiceTotal;

@@ -10,12 +10,11 @@ namespace LawOfDemeter.Tests
     public class InvoiceTests {
 	
 	    [Test]
-	    public void ShippingShouldBeAddedIfAddressIsNotInEurope() {
+	    public void ShippingShouldBeAddedIfAddressIsNotInEurope()
+	    {
+	        var country = new Country(false);
     		
-		    Address address = new Address(new Country(false));
-		    Customer customer = new Customer(address);
-    		
-		    Invoice invoice = new Invoice(customer);
+		    Invoice invoice = new Invoice(country);
 		    invoice.AddItem(new InvoiceItem("Product X", 1, 100));
     		
 		    Assert.AreEqual(100 + Invoice.SHIPPING_COST_OUTSIDE_EU, 
