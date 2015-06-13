@@ -18,20 +18,20 @@ namespace OpenClosed
 		    this.director = director;
 	    }
 
-	    public string Summary {
+	    public virtual string Summary {
             get { return title + ", " + year.ToString() + ", dir: " + director; }
 	    }
 
-	    public bool IsOnLoan {
+	    public virtual bool IsOnLoan {
             get { return onLoan; }
 	    }
 
-	    public void Borrow(Customer customer) {
+	    public virtual void Borrow(Customer customer) {
 		    borrower = customer;
 		    onLoan = true;
 	    }
 
-	    public Customer Borrower {
+	    public virtual Customer Borrower {
             get { return borrower; }
 	    }
 
