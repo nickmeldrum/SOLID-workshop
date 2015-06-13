@@ -1,23 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace LawOfDemeter
 {
     public class Customer
     {
-
-        private Address address;
+        private readonly Address address;
 
         public Customer(Address address)
         {
             this.address = address;
         }
 
-        public Address Address
+        public bool IsInEurope()
         {
-            get { return address; }
+            return address.IsInEurope();
         }
-
     }
 }

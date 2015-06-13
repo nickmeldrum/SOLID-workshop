@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LawOfDemeter
 {
@@ -28,13 +26,11 @@ namespace LawOfDemeter
 			        invoiceTotal += invoiceItem.Subtotal;
 		        }
         		
-		        if(!customer.Address.Country.IsInEurope){
+		        if(!this.customer.IsInEurope()){
 			        invoiceTotal += SHIPPING_COST_OUTSIDE_EU;
 		        }
 		        return invoiceTotal;
             }
 	    }
-
-    	
-    }
+     }
 }
