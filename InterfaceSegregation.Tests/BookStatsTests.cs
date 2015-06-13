@@ -11,7 +11,7 @@ namespace InterfaceSegregation.Tests
     	
 	    [Test]
 	    public void TwoBooksRatedFiveFoundInListOfThreeBooks() {
-		    IList<Book> books = new List<Book>();
+            var books = new List<IRateBooks>();
 		    AddBookWithRating(books, 5);
 		    AddBookWithRating(books, 5);
 		    AddBookWithRating(books, 1);
@@ -19,8 +19,9 @@ namespace InterfaceSegregation.Tests
 		    Assert.AreEqual(2, new BookStats(books).GetBooksWithRating(5).Count);
 	    }
 
-	    private void AddBookWithRating(IList<Book> books, int rating) {
-		    Book book1 = new Book(null, null, 0);
+        private void AddBookWithRating(IList<IRateBooks> books, int rating)
+        {
+		    IRateBooks book1 = new Book(null, null, 0);
 		    book1.Rate(rating);		
 		    books.Add(book1);
 	    }

@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace InterfaceSegregation
 {
-    public class Book {
-
+    public class Book : IBookSummary, IBookRating, IRateBooks
+    {
 	    private string title;
 	    private string author;
 	    private int yearPublished;

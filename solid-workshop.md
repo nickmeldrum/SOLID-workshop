@@ -94,6 +94,12 @@ Design Principles
  look at complexity - things with more classes should be redesigned
 
 
+DIP
+
+the more things depend on you the more stable you should be
+hence the more arrows pointing into you the more abstract you should be
+
+
 Class Design Principles
 =========================
 

@@ -7,9 +7,9 @@ namespace InterfaceSegregation
     public class Library
     {
 
-        private IList<Book> books = new List<Book>();
+        private readonly IList<IBookSummary> books = new List<IBookSummary>();
 
-        public IList<Book> Books
+        public IList<IBookSummary> Books
         {
             get { return books; }
         }
@@ -23,7 +23,7 @@ namespace InterfaceSegregation
         {
             string dump = "";
 
-            foreach (Book book in books )
+            foreach (IBookSummary book in books )
             {
                 dump += book.Summary;
                 if (books.IndexOf(book) < books.Count - 1)
