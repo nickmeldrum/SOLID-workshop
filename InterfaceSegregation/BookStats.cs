@@ -1,19 +1,20 @@
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace InterfaceSegregation
 {
     public class BookStats {
 
-	    private IList<IBookRating> books;
+	    private IList<Book> books;
 
-	    public BookStats(IList<IBookRating> books) {
+	    public BookStats(IList<Book> books) {
 		    this.books = books;
 	    }
 
-	    public IList<IBookRating> GetBooksWithRating(int rating) {
-            IList<IBookRating> booksWithRating = new List<IBookRating>();
-            foreach (IBookRating book in books)
-            {
+	    public IList<Book> GetBooksWithRating(int rating) {
+		    IList<Book> booksWithRating = new List<Book>();
+		    foreach(Book book in books) {
 			    if(book.Rating == rating)
 				    booksWithRating.Add(book);
 		    }
