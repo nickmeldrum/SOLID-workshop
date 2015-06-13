@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using NUnit.Framework;
 
 namespace TellDontAsk.Tests
@@ -11,44 +7,47 @@ namespace TellDontAsk.Tests
     	
 	    [Test]
 	    public void RoomFourBySixMetresRequiresTwentyFourSquareMetersOfCarpet() {
-		    Assert.AreEqual(24, CalculateAreaOfCarpet(4, 6));
-	    }
-    	
-	    [Test]
-	    public void RoomSixBySixMetresRequiresTwentyFourSquareMetersOfCarpet() {
-		    Assert.AreEqual(36, CalculateAreaOfCarpet(6, 6));
+            var room = new Room(4, 6);
+            
+		    Assert.AreEqual(24, room.CalculateAreaOfCarpet());
 	    }
 
-    	
-	    [Test]
-	    public void OneSquareMetreOfCarpetCostingNinePerMetreCostsTotalNine() {
-		    Assert.AreEqual(9, CreateCarpetQuoteForRoom(new Carpet(9, true), 1, 1).CalculateTotalPrice());
+        [Test]
+        public void OneSquareMetreOfCarpetCostingNinePerMetreCostsTotalNine()
+        {
+            var room = new Room(1, 1);
+            var carpet = new Carpet(room, 9, true);
+
+            Assert.AreEqual(9, carpet.CalculateTotalPrice());
+        }
+
+        [Test]
+	    public void RoomSixBySixMetresRequiresTwentyFourSquareMetersOfCarpet() {
+            var room = new Room(6, 6);
+
+		    Assert.AreEqual(36, room.CalculateAreaOfCarpet());
 	    }
-    	
-	    [Test]
+
+        [Test]
 	    public void FourSquareMetresOfCarpetCostingNinePerMetreCostsTotalThirtySix() {
-		    Assert.AreEqual(36, CreateCarpetQuoteForRoom(new Carpet(9, true), 2, 2).CalculateTotalPrice());
+		    Assert.AreEqual(36, CreateCarpetQuoteForRoom(9, true, 2, 2).CalculateTotalPrice());
 	    }
     	
 	    [Test]
 	    public void TwoPointTwoFiveSquareMetresOfCarpetCostingOnePerSquareMetreAndSoldByWholeSquareMetreCostsThree() {
-		    Assert.AreEqual(3, CreateCarpetQuoteForRoom(new Carpet(1, true), 1.5, 1.5).CalculateTotalPrice());
+		    Assert.AreEqual(3, CreateCarpetQuoteForRoom(1, true, 1.5, 1.5).CalculateTotalPrice());
 	    }
     	
 	    [Test]
 	    public void twoPointTwoFiveSquareMetresOfCarpetCostingOnePerSquareMetreAndSoldByPartSquareMetreCostsTwoPointTwoFive(){
-		    Assert.AreEqual(2.25, CreateCarpetQuoteForRoom(new Carpet(1, false), 1.5, 1.5).CalculateTotalPrice(), 0);
+		    Assert.AreEqual(2.25, CreateCarpetQuoteForRoom(1, false, 1.5, 1.5).CalculateTotalPrice(), 0);
 	    }
-
-	    private double CalculateAreaOfCarpet(double roomWidth, double roomLength) {
-		    return CreateCarpetQuoteForRoom(null, roomWidth, roomLength).CalculateAreaOfCarpet();
+        
+        private Carpet CreateCarpetQuoteForRoom(double pricePerSquareMetre, bool roundUpToSquareMetre, double width, double length)
+        {
+		    var room = new Room(width, length);
+		    var carpet = new Carpet(room, pricePerSquareMetre, roundUpToSquareMetre);
+		    return carpet;
 	    }
-    	
-	    private CarpetQuote CreateCarpetQuoteForRoom(Carpet carpet, double width, double length) {
-		    Room room = new Room(width, length);
-		    CarpetQuote carpetQuote = new CarpetQuote(room, carpet);
-		    return carpetQuote;
-	    }
-
     }
 }

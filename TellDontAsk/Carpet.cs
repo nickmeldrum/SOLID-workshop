@@ -1,26 +1,23 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TellDontAsk
 {
     public class Carpet {
+        private readonly Room room;
 
-	    private double pricePerSquareMetre;
-	    private bool roundUpToSquareMetre;
+        private readonly double pricePerSquareMetre;
+	    private readonly bool roundUpToSquareMetre;
 
-	    public Carpet(double pricePerSquareMetre, bool roundUpToSquareMetre) {
-		    this.pricePerSquareMetre = pricePerSquareMetre;
+        public Carpet(Room room, double pricePerSquareMetre, bool roundUpToSquareMetre)
+        {
+            this.room = room;
+            this.pricePerSquareMetre = pricePerSquareMetre;
 		    this.roundUpToSquareMetre = roundUpToSquareMetre;
 	    }
-
-	    public double PricePerSquareMetre {
-            get { return pricePerSquareMetre; }
-	    }
-
-	    public bool IsRoundedUpToWholeSquareMetre {
-            get { return roundUpToSquareMetre; }
-	    }
-
+        public double CalculateTotalPrice()
+        {
+            var totalCostAsDecimal = room.CalculateAreaOfCarpet() * pricePerSquareMetre;
+            return this.roundUpToSquareMetre ? Math.Ceiling(totalCostAsDecimal) : totalCostAsDecimal;
+        }
     }
 }
